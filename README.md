@@ -1,1 +1,4 @@
-# dice-verify
+# Eosgamez-Fairness-Verify
+
+
+
