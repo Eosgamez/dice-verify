@@ -1,6 +1,74 @@
 <html>
     <head>
             <meta charset="utf-8">
+            <style type="text/css">
+                body{
+                    background-color:#e6e6e6;
+                    margin:0;
+                    padding:0;
+                    display:inline-block;
+                    width:100%;
+                    text-align:center;
+                }
+                .title{
+                    background-color:#444444;
+                    font-size:2.5em;
+                    padding:8px 0;
+                    text-align:center;
+                    font-weight:bold;
+                    color:#ffffff;
+                }
+
+                #info, #result{
+                    width: 100%;
+                }
+
+                table{
+                    border-collapse: collapse;
+                    width:100%;
+                    margin:10px 0;
+                    table-layout:fixed;
+                    word-break:break-all;
+                }
+
+                table th{
+                    display:table-cell;
+                    padding:20px 15px 5px 15px;
+                    border-bottom:2px solid #535353;
+                    font-size:1.5em;
+                    font-weight: bold;
+                    color:#535353;
+                }
+
+                table td{
+                    display:table-cell;
+                    padding:20px 15px 5px 15px;
+                    border-bottom:2px solid #535353;
+                    font-size:1.2em;
+                }
+
+                button{
+                    margin:20px;
+                    background-color: #c0392b;
+                    border-color: #c0392b;
+                    border-radius:20px;
+                    -webkit-box-shadow: 0 3px 0 #8f2a1f;
+                    box-shadow: 0 3px 0 #8f2a1f;
+                    font-size:1.7em;
+                    font-weight: bold;
+                    color:white;
+                    padding:15px 100px;
+                }
+                button:hover{
+                    background-color:#ac3420;
+                }
+                button:active{
+                    top: 3px;
+                    outline: none;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+                }
+           </style>
             <script src="https://cdn.jsdelivr.net/npm/eosjs-ecc@4.0.4/lib/eosjs-ecc.min.js"
             integrity="sha512-dYFDmK/d9r3/NCp6toLtfkwOjSMRBaEzaGAx1tfRItC0nsI0hVLERk05iNBQR7uDNI7ludYhcBI4vUiFHdjsTQ=="
             crossorigin="anonymous">
@@ -10,9 +78,10 @@
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous">
             </script>
+            
     </head>
     <body>
-        <H4>Eosgamez - Verification Script</H4>
+        <div class="title">Eosgamez - Verification Script</div>
         <div id="info"></div>
         <button type="button" onclick="verify()">verify</button>
         <div id="result"></div>
@@ -45,10 +114,23 @@
                 if(result)
                 {
                     var html = ''
-                    html += '<ul>';
-                    html += '<li><p>last 6 : '+lastSixNum+'('+ parseInt(lastSixNum,16)+')</p></li>';
-                    html += '<li><p>roll number : '+(parseInt(lastSixNum,16) %6 + 1)+'</p></li>';             
-                    html += '</ul>';
+                    html += '<table>';
+                    html += '<colgroup>';
+                    html += '<col width="200px" />';
+                    html += '<col width="*" />';
+                    html += '</colgroup>';
+                    html += '<tbody>';
+                    html += '<tr>';
+                    html += '<th>last 6</th>';
+                    html += '<td>' + lastSixNum + '('+ parseInt(lastSixNum,16) + ')</td>';
+                    html += '</tr>';
+
+                    html += '<tr>';
+                    html += '<th>roll number</th>';
+                    html += '<td>' + (parseInt(lastSixNum,16) %6 + 1) + '</td>';
+                    html += '</tr>';
+                    html += '</tbody>';
+                    html += '</table>';
                     $('#result').html(html);
                 }
             }
@@ -56,16 +138,46 @@
             (function($) {
                 var $info = $("#info");
                 var html = "";
-                html += '<ul>';
-                html += '<li><p>bet id : '+bet_id+'</p></li>';
-                html += '<li><p>user seed : '+user_seed+'</p></li>';
-                html += '<li><p>timestamp : '+timestamp+'</p></li>';
-                html += '<li><p>public key : '+publickey+'</p></li>';
-                html += '<li><p>seed(sha256) : '+seed_sha256+'</p></li>';
-                html += '<li><p>signature : '+signature+'</p></li>';             
-                html += '</ul>';
-                $info.html(html);
 
+                html += '<table>';
+                html += '<colgroup>';
+                html += '<col width="200px" />';
+                html += '<col width="*" />';
+                html += '</colgroup>';
+                html += '<tbody>';
+                html += '<tr>';
+                html += '<th>bet id</th>';
+                html += '<td>' + bet_id + '</td>';
+                html += '</tr>';
+                    
+                html += '<tr>';
+                html += '<th>user seed</th>';
+                html += '<td>' + user_seed + '</td>';
+                html += '</tr>';
+
+                html += '<tr>';
+                html += '<th>timestamp</th>';
+                html += '<td>' + timestamp + '</td>';
+                html += '</tr>';
+
+                html += '<tr>';
+                html += '<th>public key</th>';
+                html += '<td>' + publickey + '</td>';
+                html += '</tr>';
+
+                html += '<tr>';
+                html += '<th>seed(sha256)</th>';
+                html += '<td>' + seed_sha256 + '</td>';
+                html += '</tr>';
+
+                html += '<tr>';
+                html += '<th>signature</th>';
+                html += '<td>' + signature + '</td>';
+                html += '</tr>';
+                html += '</tbody>';
+                html += '</table>';
+
+                $info.html(html);
             })(jQuery);
         </script>
     </body>
