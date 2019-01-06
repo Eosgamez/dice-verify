@@ -138,6 +138,8 @@
             (function($) {
                 var $info = $("#info");
                 var html = "";
+                
+                var signature_sha256 = eosjs_ecc.sha256(signature);
 
                 html += '<table>';
                 html += '<colgroup>';
@@ -156,13 +158,18 @@
                 html += '</tr>';
 
                 html += '<tr>';
-                html += '<th>timestamp</th>';
+                html += '<th>block_timestamp</th>';
                 html += '<td>' + timestamp + '</td>';
                 html += '</tr>';
 
                 html += '<tr>';
                 html += '<th>public key</th>';
                 html += '<td>' + publickey + '</td>';
+                html += '</tr>';
+
+                html += '<tr>';
+                html += '<th>seed</th>';
+                html += '<td>' + bet_id+user_seed+timestamp + '</td>';
                 html += '</tr>';
 
                 html += '<tr>';
@@ -173,6 +180,13 @@
                 html += '<tr>';
                 html += '<th>signature</th>';
                 html += '<td>' + signature + '</td>';
+                html += '</tr>';
+                html += '</tbody>';
+                html += '</table>';
+
+                html += '<tr>';
+                html += '<th>signature(sha256)</th>';
+                html += '<td>' + signature_sha256 + '</td>';
                 html += '</tr>';
                 html += '</tbody>';
                 html += '</table>';
